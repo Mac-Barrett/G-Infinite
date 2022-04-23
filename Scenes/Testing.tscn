@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Textures/road.jpeg" type="Texture" id=1]
+[ext_resource path="res://Objects/PlayerCar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/RoadPiece.gd" type="Script" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 1 )
+metallic_specular = 1.0
+
+[sub_resource type="BoxShape" id=2]
+
+[node name="Root" type="Spatial"]
+
+[node name="KinematicBody" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0 )
+
+[node name="Area" type="Area" parent="."]
+transform = Transform( 2, 0, 0, 0, 0.5, 0, 0, 0, 2, 0, 0, 0 )
+script = ExtResource( 3 )
+
+[node name="Road" type="CSGBox" parent="Area"]
+width = 20.0
+height = 1.0
+depth = 20.0
+material = SubResource( 1 )
+
+[node name="LeftRail" type="CSGBox" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
+width = 20.0
+height = 3.0
+depth = 1.0
+
+[node name="RightRail" type="CSGBox" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
+width = 20.0
+height = 3.0
+depth = 1.0
+
+[node name="LeftRailCollision" type="CollisionShape" parent="Area"]
+transform = Transform( 10, 0, 0, 0, 1.8, 0, 0, 0, 0.424, -0.0181341, 0, 10.0765 )
+shape = SubResource( 2 )
+
+[node name="RightRailCollision" type="CollisionShape" parent="Area"]
+transform = Transform( 10, 0, 0, 0, 1.8, 0, 0, 0, 0.424, 0, 0, -10 )
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="Area" to="KinematicBody" method="_on_Area_body_entered"]
