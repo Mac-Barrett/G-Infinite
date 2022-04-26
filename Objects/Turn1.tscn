@@ -7,21 +7,23 @@ albedo_texture = ExtResource( 1 )
 
 [sub_resource type="BoxShape" id=1]
 
-[node name="CSGCombiner" type="CSGCombiner"]
+[node name="RightTurn" type="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -5 )
 
 [node name="CSGBox" type="CSGBox" parent="."]
-width = 60.0
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 5 )
+width = 50.0
 height = 0.5
-depth = 60.0
+depth = 50.0
 material = SubResource( 2 )
 
-[node name="LeftRail2" type="CSGBox" parent="."]
+[node name="LeftRail1" type="CSGBox" parent="."]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20, 0, 5 )
 width = 50.0
 height = 3.0
 depth = 1.0
 
-[node name="RightRail2" type="CSGBox" parent="."]
+[node name="LeftRail2" type="CSGBox" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -20 )
 width = 50.0
 height = 3.0
@@ -30,10 +32,37 @@ depth = 1.0
 [node name="Rigid Body" type="RigidBody" parent="."]
 mode = 1
 
-[node name="LeftRailCollision2" type="CollisionShape" parent="Rigid Body"]
+[node name="LeftRail1" type="CollisionShape" parent="Rigid Body"]
 transform = Transform( -1.09278e-06, 0, 0.5, 0, 3, 0, -25, 0, -2.18557e-08, 20, 0, 5 )
 shape = SubResource( 1 )
 
-[node name="RightRailCollision2" type="CollisionShape" parent="Rigid Body"]
+[node name="LeftRail2" type="CollisionShape" parent="Rigid Body"]
 transform = Transform( 25, 0, 0, 0, 3, 0, 0, 0, 0.5, -5, 0, -20 )
 shape = SubResource( 1 )
+
+[node name="RightRail1" type="CollisionShape" parent="Rigid Body"]
+transform = Transform( -0.5, 0, -1.14838e-05, 0, 3, 0, 1.14838e-06, 0, -5, -20, 0, 25 )
+shape = SubResource( 1 )
+
+[node name="RightRail2" type="CollisionShape" parent="Rigid Body"]
+transform = Transform( -2.18557e-08, 0, 5, 0, 3, 0, -0.5, 0, -2.18557e-07, -25, 0, 20 )
+shape = SubResource( 1 )
+
+[node name="CSGBox2" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, 25 )
+operation = 2
+width = 10.0
+height = 1.0
+depth = 10.0
+
+[node name="RightRail1" type="CSGBox" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -25, 0, 20 )
+width = 10.0
+height = 3.0
+depth = 1.0
+
+[node name="RightRail2" type="CSGBox" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20, 0, 25 )
+width = 10.0
+height = 3.0
+depth = 1.0
