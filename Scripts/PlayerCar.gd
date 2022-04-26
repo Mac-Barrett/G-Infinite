@@ -22,8 +22,11 @@ var brake = 0.3
 var MAX_SPEED = 40
 var fps = 60
 
+# Meta Variables
 var currLap = 1
 var totalLaps = 3
+var health = 100
+var power = 100
 
 
 # On Ready
@@ -89,7 +92,7 @@ func update_HUD():
     update_Debug()
     lapCounterLabel.text = "Lap " + String(currLap) + "/" + String(totalLaps)
     powerSlider.value = 100
-    healthSlider.value = 100
+    healthSlider.value = health
     speedLabel.text = String(speed * 26) + " kmh"
     speedSlider.value = (speed / MAX_SPEED) * 100
     pass
@@ -105,12 +108,35 @@ func set_camera():
 # handles collisions from move_and_collide()
 func handle_(collision):
     if (collision != null):
-        var hitMagnitude = (abs(speed) / 5) * 10
+        var hitMagnitude = (abs(speed) / 6) * 10
+        hitMagnitude *= angle_multiplyer(collision)
+        
         speed = max(1, speed - 10)
         impulse.x = collision.normal.x * hitMagnitude
         impulse.z = collision.normal.z * hitMagnitude
+        
+        health = health - int(hitMagnitude * 0.1)
+        
+        $HUD/Debug/CollisionMagnitude.text = "Hit Magnitude: " + String(hitMagnitude)
+        $HUD/Debug/CollisionNormal.text = "Collision Normal: " + String(collision.normal)
+        
         collision = null
     pass
+  
+  
+# Uses collision normal and player's direction to calculate
+# a multiplyer for the hitMagnitude
+func angle_multiplyer(collision):
+    var angleMultiplyer
+    if (collision.normal.x == 1 or collision.normal.x == -1):
+        angleMultiplyer = abs(transform.basis.x.x)
+    elif (collision.normal.z == 1 or collision.normal.z == -1):
+        angleMultiplyer = abs(transform.basis.x.z)
+    else:
+        # Some error so set it to a middle ground
+        angleMultiplyer = 0.5
+    return (angleMultiplyer + 0.5)
+    
 
 
 # decays the impulse vector from collisions

@@ -7,18 +7,20 @@ func load_racers():
     # Load player car data assigned by UI Menu
     var player = load("res://Vehicles/PlayerCar.tscn").instance()
     player.rotation.y = deg2rad(180)
+    player.transform.origin.x = startBlock.transform.origin.x
+    player.transform.origin.z = startBlock.transform.origin.z
     add_child(player)
     pass
 
 
-
+# Grabs data for track from specified file
 func load_track_data():
     # Load from file assigned by UI Menu
     var data = [[11,2,12],[0,-1,1],[10,2,13]]
     return data
 
 
-
+# Uses data array to load in trackpieces and place them in world
 func load_track_pieces(data):
     for x in range(0, 3):
         for z in range(0, 3):

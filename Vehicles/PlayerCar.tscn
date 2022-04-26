@@ -29,29 +29,39 @@ margin_right = 1030.0
 margin_bottom = 604.0
 
 [node name="Debug" type="VBoxContainer" parent="HUD"]
-margin_left = 44.0
-margin_top = 410.0
-margin_right = 260.0
-margin_bottom = 547.0
+margin_left = 50.0
+margin_top = 300.0
+margin_right = 300.0
+margin_bottom = 550.0
 
 [node name="Speed" type="Label" parent="HUD/Debug"]
-margin_right = 216.0
+margin_right = 250.0
 margin_bottom = 14.0
 
 [node name="Direction" type="Label" parent="HUD/Debug"]
 margin_top = 18.0
-margin_right = 216.0
+margin_right = 250.0
 margin_bottom = 32.0
 
 [node name="Velocity" type="Label" parent="HUD/Debug"]
 margin_top = 36.0
-margin_right = 216.0
+margin_right = 250.0
 margin_bottom = 50.0
 
 [node name="ImpulseV" type="Label" parent="HUD/Debug"]
 margin_top = 54.0
-margin_right = 216.0
+margin_right = 250.0
 margin_bottom = 68.0
+
+[node name="CollisionMagnitude" type="Label" parent="HUD/Debug"]
+margin_top = 72.0
+margin_right = 250.0
+margin_bottom = 86.0
+
+[node name="CollisionNormal" type="Label" parent="HUD/Debug"]
+margin_top = 90.0
+margin_right = 250.0
+margin_bottom = 104.0
 
 [node name="TopRightBox" type="HSplitContainer" parent="HUD"]
 margin_left = 750.0
@@ -96,3 +106,4 @@ align = 2
 margin_top = 26.0
 margin_right = 130.0
 margin_bottom = 40.0
+allow_greater = true
