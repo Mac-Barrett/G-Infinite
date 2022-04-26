@@ -1,0 +1,98 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/PlayerCar.gd" type="Script" id=1]
+
+[sub_resource type="CylinderShape" id=1]
+
+[sub_resource type="ShaderMaterial" id=2]
+
+[node name="PlayerCar" type="KinematicBody"]
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( -2.62268e-08, -1.1, 0, 0.6, -4.80825e-08, 0, 0, 0, 0.6, 1, 0.5, -0.5 )
+shape = SubResource( 1 )
+
+[node name="Model" type="CSGPolygon" parent="."]
+use_in_baked_light = true
+calculate_tangents = false
+polygon = PoolVector2Array( 0, 0, 0, 0.4, 1, 0.75, 2, 0.7, 2, 0.4, 1, 0 )
+material = SubResource( 2 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -4.37114e-08, -0.422618, 0.906308, 0, 0.906308, 0.422618, -1, 1.84732e-08, -3.9616e-08, 4, 3, -0.5 )
+current = true
+fov = 90.0
+
+[node name="HUD" type="Control" parent="."]
+margin_right = 1030.0
+margin_bottom = 604.0
+
+[node name="Debug" type="VBoxContainer" parent="HUD"]
+margin_left = 44.0
+margin_top = 410.0
+margin_right = 260.0
+margin_bottom = 547.0
+
+[node name="Speed" type="Label" parent="HUD/Debug"]
+margin_right = 216.0
+margin_bottom = 14.0
+
+[node name="Direction" type="Label" parent="HUD/Debug"]
+margin_top = 18.0
+margin_right = 216.0
+margin_bottom = 32.0
+
+[node name="Velocity" type="Label" parent="HUD/Debug"]
+margin_top = 36.0
+margin_right = 216.0
+margin_bottom = 50.0
+
+[node name="ImpulseV" type="Label" parent="HUD/Debug"]
+margin_top = 54.0
+margin_right = 216.0
+margin_bottom = 68.0
+
+[node name="TopRightBox" type="HSplitContainer" parent="HUD"]
+margin_left = 750.0
+margin_top = 50.0
+margin_right = 980.0
+margin_bottom = 82.0
+
+[node name="LapCounter" type="Label" parent="HUD/TopRightBox"]
+margin_top = 9.0
+margin_right = 51.0
+margin_bottom = 23.0
+text = "Lap: 1/3"
+valign = 1
+
+[node name="VBoxTopRight" type="VBoxContainer" parent="HUD/TopRightBox"]
+margin_left = 63.0
+margin_right = 230.0
+margin_bottom = 32.0
+
+[node name="Power" type="ProgressBar" parent="HUD/TopRightBox/VBoxTopRight"]
+margin_right = 167.0
+margin_bottom = 14.0
+
+[node name="Health" type="ProgressBar" parent="HUD/TopRightBox/VBoxTopRight"]
+margin_top = 18.0
+margin_right = 167.0
+margin_bottom = 32.0
+
+[node name="SpeedBox" type="VSplitContainer" parent="HUD"]
+margin_left = 850.0
+margin_top = 500.0
+margin_right = 980.0
+margin_bottom = 540.0
+
+[node name="Speed" type="Label" parent="HUD/SpeedBox"]
+margin_right = 130.0
+margin_bottom = 14.0
+text = "0 kph"
+align = 2
+
+[node name="SpeedSlider" type="ProgressBar" parent="HUD/SpeedBox"]
+margin_top = 26.0
+margin_right = 130.0
+margin_bottom = 40.0
