@@ -5,10 +5,12 @@ This Project is going to slowly come together as I learn basic things inside thi
 
 Immediate todo list:
 
-- Work on building wall bounce physics
-- Creating more basic trackpieces so I can build a track
-- Make an efficient way to link collision events of track pieces
-  - Likely group them together somehow and run a for-loop? seems innefecient/costly
+- Implement player health bar
+- Implement healing strips
+- Implement player boost button
+- Implement boost strips
+- Creating more basic trackpieces so I can build a simple track
+  - E.G. turns & integrating healing strips and boost strips onto pieces
 
 Eventual features I'd like to implement:
 
