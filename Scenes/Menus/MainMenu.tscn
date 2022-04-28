@@ -22,11 +22,11 @@ margin_right = 127.0
 margin_bottom = 20.0
 text = "Single Player Race"
 
-[node name="Options" type="Button" parent="VBoxContainer"]
+[node name="Track Builder" type="Button" parent="VBoxContainer"]
 margin_top = 24.0
 margin_right = 127.0
 margin_bottom = 44.0
-text = "Options"
+text = "Track Builder"
 
 [node name="Credits" type="Button" parent="VBoxContainer"]
 margin_top = 48.0
@@ -41,6 +41,6 @@ margin_bottom = 92.0
 text = "Quit App"
 
 [connection signal="pressed" from="VBoxContainer/Single Player" to="." method="_on_Single_Player_pressed"]
-[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Track Builder" to="." method="_on_Track_Builder_pressed"]
 [connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="VBoxContainer/Close Game" to="." method="_on_Close_Game_pressed"]
