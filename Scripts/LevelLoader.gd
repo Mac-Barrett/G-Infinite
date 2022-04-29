@@ -1,6 +1,7 @@
 extends Spatial
 
 const gridSize = 60;
+var trackData = []
 var startBlock
 
 func load_racers():
@@ -8,6 +9,7 @@ func load_racers():
     var player = load("res://Vehicles/PlayerCar.tscn").instance()
     player.transform.origin.x = startBlock.transform.origin.x
     player.transform.origin.z = startBlock.transform.origin.z
+    player.rotation.y = deg2rad(180)
     add_child(player)
     pass
 
@@ -40,7 +42,7 @@ func load_track_pieces(data):
             var trackPiece = load_piece(data[x][z])
             # If piece is not null, set transform
             if (trackPiece != null):
-                trackPiece.transform.origin.x = float(gridSize * x)
+                trackPiece.transform.origin.x = float(-gridSize * x)
                 trackPiece.transform.origin.z = float(gridSize * z)
                 add_child(trackPiece)
     pass
@@ -66,8 +68,12 @@ func load_piece(tpID):
 
 
 # Once loaded...
-func _ready():
-    var trackData = load_track_data()
+func _enter_tree():
+    # var trackData = load_track_data()
     load_track_pieces(trackData)
     load_racers()
+    pass
+
+func set_trackData(td):
+    trackData = td.duplicate()
     pass

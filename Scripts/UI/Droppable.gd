@@ -13,7 +13,6 @@ func drop_data(position, data):
     texture = data["texture"]
     flip_h = data["flip_h"]
     flip_v = data["flip_v"]
-    print(gridPos)
     root.callv("update_trackData", [gridPos, data["textureID"]])
     pass
     

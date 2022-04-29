@@ -50,4 +50,5 @@ func _on_TestTrack_pressed():
     var test = load("res://Scenes/LevelLoader.tscn").instance()
     test.set_trackData(trackData)
     get_tree().current_scene.add_child(test)
+    visible = false
     pass
