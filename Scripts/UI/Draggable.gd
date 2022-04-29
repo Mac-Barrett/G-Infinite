@@ -3,6 +3,7 @@ extends TextureRect
 func get_drag_data(position):
     var data = {
         "texture": texture,
+        "textureID" : name,
         "flip_h" : flip_h,
         "flip_v" : flip_v
         }
