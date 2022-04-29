@@ -1,19 +1,137 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/TrackBuilder.gd" type="Script" id=1]
+[ext_resource path="res://Textures/Icons/10.jpg" type="Texture" id=2]
+[ext_resource path="res://Textures/Icons/1.jpg" type="Texture" id=3]
+[ext_resource path="res://Textures/Icons/2.jpg" type="Texture" id=4]
+[ext_resource path="res://Textures/Icons/0.jpg" type="Texture" id=5]
+[ext_resource path="res://Scripts/UI/Draggable.gd" type="Script" id=6]
+[ext_resource path="res://Textures/Icons/-1.jpg" type="Texture" id=8]
 
-[node name="Control" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Background" type="ColorRect"]
+margin_right = 1021.0
+margin_bottom = 599.0
+color = Color( 0.0561905, 0.201585, 0.246094, 1 )
 script = ExtResource( 1 )
 
-[node name="track" type="GridContainer" parent="."]
-margin_left = 200.0
+[node name="OptionsPanel" type="Panel" parent="."]
+margin_left = 600.0
 margin_top = 50.0
-margin_right = 700.0
+margin_right = 950.0
 margin_bottom = 550.0
-columns = 6
 
-[node name="Button" type="TextureButton" parent="."]
-margin_right = 12.0
+[node name="VSplit" type="VSplitContainer" parent="OptionsPanel"]
+margin_left = 25.0
+margin_top = 25.0
+margin_right = 325.0
+margin_bottom = 475.0
+split_offset = 5
+
+[node name="OptionButtons" type="GridContainer" parent="OptionsPanel/VSplit"]
+margin_right = 300.0
+margin_bottom = 49.0
+columns = 3
+
+[node name="SaveTrack" type="Button" parent="OptionsPanel/VSplit/OptionButtons"]
+margin_right = 78.0
 margin_bottom = 20.0
+text = "Save Track"
+
+[node name="LoadTrack" type="Button" parent="OptionsPanel/VSplit/OptionButtons"]
+margin_left = 82.0
+margin_right = 161.0
+margin_bottom = 20.0
+text = "Load Track"
+
+[node name="ClearTrack" type="Button" parent="OptionsPanel/VSplit/OptionButtons"]
+margin_left = 165.0
+margin_right = 246.0
+margin_bottom = 20.0
+text = "Clear Track"
+
+[node name="TestTrack" type="Button" parent="OptionsPanel/VSplit/OptionButtons"]
+margin_top = 24.0
+margin_right = 78.0
+margin_bottom = 44.0
+text = "Test Track"
+
+[node name="TrackPieces" type="GridContainer" parent="OptionsPanel/VSplit"]
+margin_top = 61.0
+margin_right = 300.0
+margin_bottom = 450.0
+columns = 4
+
+[node name="-1" type="TextureRect" parent="OptionsPanel/VSplit/TrackPieces"]
+margin_right = 60.0
+margin_bottom = 60.0
+texture = ExtResource( 8 )
+script = ExtResource( 6 )
+
+[node name="0" type="TextureRect" parent="OptionsPanel/VSplit/TrackPieces"]
+margin_left = 64.0
+margin_right = 124.0
+margin_bottom = 60.0
+texture = ExtResource( 5 )
+script = ExtResource( 6 )
+
+[node name="1" type="TextureRect" parent="OptionsPanel/VSplit/TrackPieces"]
+margin_left = 128.0
+margin_right = 188.0
+margin_bottom = 60.0
+texture = ExtResource( 3 )
+script = ExtResource( 6 )
+
+[node name="2" type="TextureRect" parent="OptionsPanel/VSplit/TrackPieces"]
+margin_left = 192.0
+margin_right = 252.0
+margin_bottom = 60.0
+texture = ExtResource( 4 )
+script = ExtResource( 6 )
+
+[node name="10" type="TextureRect" parent="OptionsPanel/VSplit/TrackPieces"]
+margin_top = 64.0
+margin_right = 60.0
+margin_bottom = 124.0
+texture = ExtResource( 2 )
+script = ExtResource( 6 )
+
+[node name="13" type="TextureRect" parent="OptionsPanel/VSplit/TrackPieces"]
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 124.0
+margin_bottom = 124.0
+texture = ExtResource( 2 )
+flip_h = true
+script = ExtResource( 6 )
+
+[node name="11" type="TextureRect" parent="OptionsPanel/VSplit/TrackPieces"]
+margin_left = 128.0
+margin_top = 64.0
+margin_right = 188.0
+margin_bottom = 124.0
+texture = ExtResource( 2 )
+flip_v = true
+script = ExtResource( 6 )
+
+[node name="12" type="TextureRect" parent="OptionsPanel/VSplit/TrackPieces"]
+margin_left = 192.0
+margin_top = 64.0
+margin_right = 252.0
+margin_bottom = 124.0
+texture = ExtResource( 2 )
+flip_h = true
+flip_v = true
+script = ExtResource( 6 )
+
+[node name="TrackPanel" type="Panel" parent="."]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 550.0
+margin_bottom = 550.0
+
+[node name="track" type="GridContainer" parent="TrackPanel"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 450.0
+margin_bottom = 450.0
+columns = 6
