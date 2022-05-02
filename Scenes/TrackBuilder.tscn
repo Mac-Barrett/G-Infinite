@@ -136,7 +136,21 @@ margin_right = 450.0
 margin_bottom = 450.0
 columns = 6
 
+[node name="FileDialogue" type="FileDialog" parent="."]
+margin_left = 78.0
+margin_top = 94.0
+margin_right = 525.0
+margin_bottom = 518.0
+rect_min_size = Vector2( 400, 140 )
+window_title = "Open a File"
+dialog_hide_on_ok = true
+mode = 0
+current_dir = "res://SavedData/Tracks"
+current_file = "0.txt"
+current_path = "res://SavedData/Tracks/0.txt"
+
 [connection signal="pressed" from="OptionsPanel/VSplit/OptionButtons/SaveTrack" to="." method="_on_SaveTrack_pressed"]
 [connection signal="pressed" from="OptionsPanel/VSplit/OptionButtons/LoadTrack" to="." method="_on_LoadTrack_pressed"]
 [connection signal="pressed" from="OptionsPanel/VSplit/OptionButtons/ClearTrack" to="." method="_on_ClearTrack_pressed"]
 [connection signal="pressed" from="OptionsPanel/VSplit/OptionButtons/TestTrack" to="." method="_on_TestTrack_pressed"]
+[connection signal="confirmed" from="FileDialogue" to="." method="_on_FileDialogue_confirmed"]

@@ -8,6 +8,12 @@ func set_gridPos(pos):
     gridPos = pos
     pass
 
+func set_texture_on_load(data):
+    texture = data["texture"]
+    flip_h = data["flip_h"]
+    flip_v = data["flip_v"]
+    pass
+
 
 func drop_data(position, data):
     texture = data["texture"]
