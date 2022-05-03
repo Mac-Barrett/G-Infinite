@@ -3,9 +3,11 @@ extends Control
 var trackData = []
 var trackSize = 6
 
-onready var track = get_node("TrackPanel/track")
 onready var trackPieceSlot = load("res://Scenes/Menus/TrackBuilderTrackSlot.tscn")
-onready var fileBrowser = get_node("FileDialogue")
+
+onready var track = $TrackPanel/track
+onready var fileBrowser = $FileDialogue
+onready var lineEditTrackSize = $OptionsPanel/VSplit/OptionButtons/TrackSizeLineEdit
 
 
 func _ready():
@@ -52,7 +54,8 @@ func load_texture_by_ID(ID):
     var data = {
         "texture" : nodeWithTexture.texture,
         "flip_h" : nodeWithTexture.flip_h,
-        "flip_v" : nodeWithTexture.flip_v
+        "flip_v" : nodeWithTexture.flip_v,
+        "trackSize" : trackSize
        }
     return data
 
@@ -73,9 +76,18 @@ func _on_LoadTrack_pressed():
     pass
 
 
-# Clears trackData array and the viewport
+# Calls clear_track
 func _on_ClearTrack_pressed():
+    clear_track()
+    pass
+
+# Destroys original array and allocates a new one based on trackSize
+func clear_track():
+    trackData.resize(trackSize)
     for x in range(0, trackSize):
+        if (trackData[x] == null):
+            trackData[x] = []
+        trackData[x].resize(trackSize)
         for y in range(0, trackSize):
             trackData[x][y] = -1
     load_track()
@@ -101,6 +113,7 @@ func _on_FileDialogue_confirmed():
         f.open(theFile, File.WRITE)
         var saveData = {
             "trackName" : "TEST",
+            "trackSize" : trackSize,
             "trackData" : trackData
            }
         f.store_var(JSON.print(saveData))
@@ -118,10 +131,23 @@ func _on_FileDialogue_confirmed():
         var parsed_file_data = JSON.parse(text_file_data)
         var result = parsed_file_data.result
         trackData = result["trackData"].duplicate()
+        trackSize = result["trackSize"]
         
         # Convert to int array for some reason
         for x in range(0, trackSize):
             for y in range(0, trackSize):
                 trackData[x][y] = int(trackData[x][y])
+        track.columns = trackSize
+        lineEditTrackSize.text = String(trackSize)
         load_track()
+    pass
+
+
+func _on_LineEdit_text_entered(new_text):
+    if (int(new_text) >= 10 or int(new_text) <= 3):
+        lineEditTrackSize.text = String(trackSize)
+    else:
+        trackSize = int(lineEditTrackSize.text)
+    track.columns = trackSize
+    _on_ClearTrack_pressed()
     pass

@@ -26,10 +26,11 @@ margin_top = 25.0
 margin_right = 325.0
 margin_bottom = 475.0
 split_offset = 5
+collapsed = true
 
 [node name="OptionButtons" type="GridContainer" parent="OptionsPanel/VSplit"]
 margin_right = 300.0
-margin_bottom = 49.0
+margin_bottom = 48.0
 columns = 3
 
 [node name="SaveTrack" type="Button" parent="OptionsPanel/VSplit/OptionButtons"]
@@ -52,11 +53,27 @@ text = "Clear Track"
 [node name="TestTrack" type="Button" parent="OptionsPanel/VSplit/OptionButtons"]
 margin_top = 24.0
 margin_right = 78.0
-margin_bottom = 44.0
+margin_bottom = 48.0
 text = "Test Track"
 
+[node name="Label" type="Label" parent="OptionsPanel/VSplit/OptionButtons"]
+margin_left = 82.0
+margin_top = 29.0
+margin_right = 161.0
+margin_bottom = 43.0
+text = "Grid Size:"
+align = 2
+
+[node name="TrackSizeLineEdit" type="LineEdit" parent="OptionsPanel/VSplit/OptionButtons"]
+margin_left = 165.0
+margin_top = 24.0
+margin_right = 246.0
+margin_bottom = 48.0
+text = "6"
+max_length = 1
+
 [node name="TrackPieces" type="GridContainer" parent="OptionsPanel/VSplit"]
-margin_top = 61.0
+margin_top = 60.0
 margin_right = 300.0
 margin_bottom = 450.0
 columns = 4
@@ -153,4 +170,5 @@ current_path = "res://SavedData/Tracks/0.txt"
 [connection signal="pressed" from="OptionsPanel/VSplit/OptionButtons/LoadTrack" to="." method="_on_LoadTrack_pressed"]
 [connection signal="pressed" from="OptionsPanel/VSplit/OptionButtons/ClearTrack" to="." method="_on_ClearTrack_pressed"]
 [connection signal="pressed" from="OptionsPanel/VSplit/OptionButtons/TestTrack" to="." method="_on_TestTrack_pressed"]
+[connection signal="text_entered" from="OptionsPanel/VSplit/OptionButtons/TrackSizeLineEdit" to="." method="_on_LineEdit_text_entered"]
 [connection signal="confirmed" from="FileDialogue" to="." method="_on_FileDialogue_confirmed"]
