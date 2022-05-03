@@ -108,38 +108,26 @@ func _on_FileDialogue_confirmed():
     # SAVE FILE
     if (fileBrowser.mode == FileDialog.MODE_SAVE_FILE):
         print("SAVING FILE...")
-        var theFile : String = fileBrowser.current_path
-        var f = File.new()
-        f.open(theFile, File.WRITE)
-        var saveData = {
-            "trackName" : "TEST",
-            "trackSize" : trackSize,
-            "trackData" : trackData
-           }
-        f.store_var(JSON.print(saveData))
-        f.close()
+        var file_name : String = fileBrowser.current_path
+        
+        var trackSave = TrackSave.new()
+        trackSave.trackName = "TEST"
+        trackSave.trackData = trackData.duplicate()
+        trackSave.trackSize = trackSize
+        var res = ResourceSaver.save(file_name, trackSave)
     # LOAD FILE
     elif (fileBrowser.mode == FileDialog.MODE_OPEN_FILE):
         print("OPENING FILE...")
-        var theFile : String = fileBrowser.current_path
-        var f = File.new()
-        f.open(theFile, File.READ)
-        var text_file_data = f.get_as_text()
-        f.close()
+        var file_name : String = fileBrowser.current_path
         
-        # Parse JSON
-        var parsed_file_data = JSON.parse(text_file_data)
-        var result = parsed_file_data.result
-        trackData = result["trackData"].duplicate()
-        trackSize = result["trackSize"]
-        
-        # Convert to int array for some reason
-        for x in range(0, trackSize):
-            for y in range(0, trackSize):
-                trackData[x][y] = int(trackData[x][y])
-        track.columns = trackSize
-        lineEditTrackSize.text = String(trackSize)
-        load_track()
+        if ResourceLoader.exists(file_name):
+            var trackLoad = ResourceLoader.load(file_name)
+            if trackLoad is TrackSave:
+                trackData = trackLoad.trackData.duplicate()
+                trackSize = trackLoad.trackSize
+                track.columns = trackSize
+                lineEditTrackSize.text = String(trackSize)
+                load_track()
     pass
 
 

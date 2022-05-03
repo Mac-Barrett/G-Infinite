@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/TrackSave.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+trackName = "TEST"
+trackData = [ [ -1, -1, 10, 13 ], [ 10, 2, 12, 1 ], [ 0, -1, 10, 12 ], [ 11, 2, 12, -1 ] ]
+trackSize = 4
