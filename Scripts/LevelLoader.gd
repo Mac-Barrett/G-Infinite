@@ -47,6 +47,9 @@ func load_piece(tpID):
         10, 11, 12, 13:
             trackPiece = load("res://TrackPieces/10.tscn").instance()
             trackPiece.rotation.y = deg2rad(90 * (tpID - 10))
+        20, 21, 22, 23:
+            trackPiece = load("res://TrackPieces/20.tscn").instance()
+            trackPiece.rotation.y = deg2rad(90 * (tpID - 20))
         -1:
             return trackPiece
     return trackPiece

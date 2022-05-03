@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "TrackSave",
 "language": "GDScript",
-"path": "res://Scripts/TrackSave.gd"
+"path": "res://Scripts/TrackBuilder/TrackSave.gd"
 } ]
 _global_script_class_icons={
 "TrackSave": ""

@@ -3,8 +3,10 @@ extends Control
 var trackData = []
 var trackSize = 6
 
+# Scenes used
 onready var trackPieceSlot = load("res://Scenes/Menus/TrackBuilderTrackSlot.tscn")
 
+# GUI Elements
 onready var track = $TrackPanel/track
 onready var fileBrowser = $FileDialogue
 onready var lineEditTrackSize = $OptionsPanel/VSplit/OptionButtons/TrackSizeLineEdit
@@ -131,11 +133,12 @@ func _on_FileDialogue_confirmed():
     pass
 
 
+# Called when enter is pressed on the LineEdit in GUI
 func _on_LineEdit_text_entered(new_text):
     if (int(new_text) >= 10 or int(new_text) <= 3):
         lineEditTrackSize.text = String(trackSize)
     else:
         trackSize = int(lineEditTrackSize.text)
     track.columns = trackSize
-    _on_ClearTrack_pressed()
+    clear_track()
     pass

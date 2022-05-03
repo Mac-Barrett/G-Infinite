@@ -4,14 +4,14 @@ func _ready():
     pass # Replace with function body.
 
 func _on_Single_Player_pressed():
-    #get_tree().change_scene("res://Scenes/Testing.tscn")
+    # get_tree().change_scene("res://Scenes/Testing.tscn")
     get_tree().change_scene("res://Scenes/LevelLoader.tscn")
-    pass # Replace with function body.
+    pass
 
 
 func _on_Track_Builder_pressed():
     get_tree().change_scene("res://Scenes/TrackBuilder.tscn")
-    pass # Replace with function body.
+    pass
 
 func _on_Options_pressed():
     var options = load("res://Scenes/Menus/.tscn").instance()

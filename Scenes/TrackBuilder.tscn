@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Scripts/TrackBuilder.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/TrackBuilder/TrackBuilder.gd" type="Script" id=1]
 [ext_resource path="res://Textures/Icons/10.jpg" type="Texture" id=2]
 [ext_resource path="res://Textures/Icons/1.jpg" type="Texture" id=3]
 [ext_resource path="res://Textures/Icons/2.jpg" type="Texture" id=4]
 [ext_resource path="res://Textures/Icons/0.jpg" type="Texture" id=5]
-[ext_resource path="res://Scripts/UI/Draggable.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/TrackBuilder/Draggable.gd" type="Script" id=6]
+[ext_resource path="res://Textures/Icons/20.jpg" type="Texture" id=7]
 [ext_resource path="res://Textures/Icons/-1.jpg" type="Texture" id=8]
 
 [node name="Background" type="ColorRect"]
@@ -136,6 +137,41 @@ margin_top = 64.0
 margin_right = 252.0
 margin_bottom = 124.0
 texture = ExtResource( 2 )
+flip_h = true
+flip_v = true
+script = ExtResource( 6 )
+
+[node name="20" type="TextureRect" parent="OptionsPanel/VSplit/TrackPieces"]
+margin_top = 128.0
+margin_right = 60.0
+margin_bottom = 188.0
+texture = ExtResource( 7 )
+script = ExtResource( 6 )
+
+[node name="23" type="TextureRect" parent="OptionsPanel/VSplit/TrackPieces"]
+margin_left = 64.0
+margin_top = 128.0
+margin_right = 124.0
+margin_bottom = 188.0
+texture = ExtResource( 7 )
+flip_h = true
+script = ExtResource( 6 )
+
+[node name="21" type="TextureRect" parent="OptionsPanel/VSplit/TrackPieces"]
+margin_left = 128.0
+margin_top = 128.0
+margin_right = 188.0
+margin_bottom = 188.0
+texture = ExtResource( 7 )
+flip_v = true
+script = ExtResource( 6 )
+
+[node name="22" type="TextureRect" parent="OptionsPanel/VSplit/TrackPieces"]
+margin_left = 192.0
+margin_top = 128.0
+margin_right = 252.0
+margin_bottom = 188.0
+texture = ExtResource( 7 )
 flip_h = true
 flip_v = true
 script = ExtResource( 6 )
