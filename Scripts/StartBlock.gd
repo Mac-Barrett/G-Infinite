@@ -1,7 +1,9 @@
 extends RigidBody
 
-onready var parent = get_parent()
+signal finish_line_crossed
 
 func _on_Area_body_entered(body):
-    parent.call("_finish_line_crossed")
+    if body.is_in_group("Racer"):
+        emit_signal("finish_line_crossed")
+        print_debug("StartBlock: Crossed")
     pass

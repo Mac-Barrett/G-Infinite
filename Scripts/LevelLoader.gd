@@ -2,8 +2,11 @@ extends Spatial
 
 const gridSize = 60;
 var trackData = []
+var racers = []
+
 var startBlock
 var checkPoints = []
+var cpID_index = 0
 
 # Called by parent while instancing this scene
 func set_trackData(td):
@@ -13,12 +16,14 @@ func set_trackData(td):
 
 # Once scene is instanced...
 func _enter_tree():
-    # var trackData = load_track_data()
+    # trackData = load_track_data().duplicate()
     load_track_pieces(trackData)
     load_racers()
+    connect_events()
     pass
 
 
+# LOAD TRACK ---------------------------------------------------
 # Uses data array to load in trackpieces and place them in world
 func load_track_pieces(data):
     for x in range(0, data.size()):
@@ -44,25 +49,49 @@ func load_piece(tpID):
             trackPiece = load("res://TrackPieces/1.tscn").instance()
             if (tpID == 2):
                 trackPiece.rotation.y = deg2rad(90)
+        3, 4: 
+            trackPiece = load("res://TrackPieces/3.tscn").instance()
+            if (tpID == 4):
+                trackPiece.rotation.y = deg2rad(90)
+            trackPiece.set_checkpointID(cpID_index)
+            cpID_index += 1
+            checkPoints.append(trackPiece)
         10, 11, 12, 13:
             trackPiece = load("res://TrackPieces/10.tscn").instance()
             trackPiece.rotation.y = deg2rad(90 * (tpID - 10))
         20, 21, 22, 23:
             trackPiece = load("res://TrackPieces/20.tscn").instance()
             trackPiece.rotation.y = deg2rad(90 * (tpID - 20))
+        24, 25:
+            trackPiece = load("res://TrackPieces/24.tscn").instance()
+            trackPiece.rotation.y = deg2rad(180 * (tpID - 24))
         -1:
             return trackPiece
     return trackPiece
 
 
+# LOAD RACERS & EVENTS -----------------------------------------
 # Loads racers and places them in world space
 func load_racers():
     # Load player car data assigned by UI Menu
-    var player = load("res://Vehicles/PlayerCar.tscn").instance()
+    var player : KinematicBody = load("res://Vehicles/PlayerCar.tscn").instance()
     player.transform.origin.x = startBlock.transform.origin.x
     player.transform.origin.z = startBlock.transform.origin.z
     player.rotation.y = deg2rad(180)
+    
+    player.set_numCheckpoints(cpID_index)
+    player.add_to_group("Racer")
+    racers.append(player)
     add_child(player)
+    pass
+
+
+# Connects racers to events
+func connect_events():
+    for r in range(0, racers.size()):
+        startBlock.connect("finish_line_crossed", racers[r], "_on_finish_line_crossed")
+        for c in range(0, checkPoints.size()):
+            checkPoints[c].connect("checkpoint_crossed", racers[r], "_on_checkpoint_crossed")
     pass
 
 
@@ -76,12 +105,3 @@ func load_track_data():
                 [-1, 10, 13, -1]] # more complex track
     return data
 
-# ----------------------------------------------------------------
-# Called by child when the Starting Block's finish line is crossed
-func _finish_line_crossed():
-    pass
-
-
-# Called by child when a checkpoint is crossed 
-func _check_point_crossed(checkPoint):
-    pass

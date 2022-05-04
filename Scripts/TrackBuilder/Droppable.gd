@@ -5,9 +5,6 @@ const gridTotalSize : Vector2 = Vector2(400, 400)
 var gridPos = Vector2()
 
 
-func _ready():
-    pass
-
 func set_gridPos(pos):
     gridPos = pos
     pass
@@ -18,8 +15,8 @@ func set_texture_on_load(data):
     flip_h = data["flip_h"]
     flip_v = data["flip_v"]
     var cols = data["trackSize"]
-    rect_size.x = gridTotalSize.x / cols
-    rect_size.y = gridTotalSize.y / cols
+    rect_size.x = (gridTotalSize.x / cols) - 4
+    rect_size.y = (gridTotalSize.y / cols) - 4
     pass
 
 
