@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "KinematicBody",
 "class": "Racer",
 "language": "GDScript",
-"path": "res://Scripts/PlayerCar.gd"
+"path": "res://Scripts/BaseRacer.gd"
 }, {
 "base": "Resource",
 "class": "TrackSave",
