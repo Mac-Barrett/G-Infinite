@@ -83,6 +83,7 @@ func _on_ClearTrack_pressed():
     clear_track()
     pass
 
+
 # Destroys original array and allocates a new one based on trackSize
 func clear_track():
     trackData.resize(trackSize)
@@ -98,7 +99,7 @@ func clear_track():
 
 # Instances Level Loader Scene w/ TrackData
 func _on_TestTrack_pressed():
-    var test = load("res://Scenes/LevelLoader.tscn").instance()
+    var test = load("res://Scenes/Levels/LevelLoader.tscn").instance()
     test.set_trackData(trackData)
     get_tree().current_scene.add_child(test)
     visible = false

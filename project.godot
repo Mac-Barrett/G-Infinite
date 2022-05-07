@@ -12,10 +12,16 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "TrackSave",
 "language": "GDScript",
-"path": "res://Scripts/TrackBuilder/TrackSave.gd"
+"path": "res://Scripts/Resources/TrackSave.gd"
+}, {
+"base": "Resource",
+"class": "Vehicle",
+"language": "GDScript",
+"path": "res://Scripts/Resources/VehcileSave.gd"
 } ]
 _global_script_class_icons={
-"TrackSave": ""
+"TrackSave": "",
+"Vehicle": ""
 }
 
 [application]
@@ -24,6 +30,10 @@ config/name="G-Infinite"
 run/main_scene="res://Scenes/Menus/MainMenu.tscn"
 run/low_processor_mode=true
 config/icon="res://icon.png"
+
+[display]
+
+window/size/resizable=false
 
 [layer_names]
 

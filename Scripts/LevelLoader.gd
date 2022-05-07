@@ -87,6 +87,7 @@ func load_racers():
 
 
 # Connects racers to events
+# Going so see if this isn't needed
 func connect_events():
     for r in range(0, racers.size()):
         startBlock.connect("finish_line_crossed", racers[r], "_on_finish_line_crossed")

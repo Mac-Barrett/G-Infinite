@@ -7,5 +7,5 @@ func _ready():
 
 func _on_Button_pressed():
     var parent = get_parent();
-    parent.remove_child(parent.get_child(1));
+    parent.remove_child(get_node(self.get_path()));
     pass # Replace with function body.
