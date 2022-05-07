@@ -19,7 +19,6 @@ func _enter_tree():
     # trackData = load_track_data().duplicate()
     load_track_pieces(trackData)
     load_racers()
-    connect_events()
     pass
 
 
@@ -83,16 +82,6 @@ func load_racers():
     player.add_to_group("Racer")
     racers.append(player)
     add_child(player)
-    pass
-
-
-# Connects racers to events
-# Going so see if this isn't needed
-func connect_events():
-    for r in range(0, racers.size()):
-        startBlock.connect("finish_line_crossed", racers[r], "_on_finish_line_crossed")
-        for c in range(0, checkPoints.size()):
-            checkPoints[c].connect("checkpoint_crossed", racers[r], "_on_checkpoint_crossed")
     pass
 
 

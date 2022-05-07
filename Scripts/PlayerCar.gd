@@ -1,5 +1,7 @@
 extends KinematicBody
 
+class_name Racer
+
 # HUD elements
 onready var DEBUG = get_node("HUD/Debug")
 onready var lapCounterLabel = get_node("HUD/TopRightBox/LapCounter")
@@ -30,6 +32,7 @@ var numCheckpoints = 0
 const cpOffset = 2 # Layer offset for checkpoints, all cp's start after 3
 
 var health = 100
+var isHealing : bool
 var power = 100
 
 
@@ -52,6 +55,8 @@ func _physics_process(delta):
     get_input()
     set_camera()
     update_HUD()
+    if isHealing:
+        health = min(100, health + (5 * (1.0 / 60)))
     handle_(move_and_collide(velocity * delta))
     pass
 
@@ -179,22 +184,22 @@ func update_HUD():
 
 
 # SIGNALS ---------------------------------------------------------------------
-# Called by LevelLoader when this body crosses the finish line
+# Called by the finish line when this body crosses it
 func _on_finish_line_crossed():
     set_collision_layer_bit(1, false)
     set_collision_mask_bit(1, false)
     if currLap >= 3:
-        print("RACE OVER")
+        print("Player _on_finish_line_crossed: RACE OVER")
     else:
         currLap += 1
-        print("STILL RACING: " + String(currLap))
+        print("Player _on_finish_line_crossed: STILL RACING: " + String(currLap))
     set_checkpoints(true)
     pass
 
 
-# Called by LevelLoader when this body crosses a checkpoint
+# Called by the checkpoint when this body crosses it, setting the collision off
 func _on_checkpoint_crossed(cpID):
-    print(String(cpID))
+    print("Player _on_cp_crossed: " + String(cpID))
     set_collision_layer_bit(cpID + cpOffset, false)
     set_collision_mask_bit(cpID + cpOffset, false)
     
@@ -220,4 +225,10 @@ func set_checkpoints(setting):
     for x in range(cpOffset, numCheckpoints + cpOffset):
         set_collision_layer_bit(x, setting)
         set_collision_mask_bit(x, setting)
+    pass
+
+
+# Called by healing strips to turn healing on/off
+func set_isHealing(value):
+    isHealing = value
     pass
