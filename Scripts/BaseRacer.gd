@@ -39,17 +39,17 @@ func _on_finish_line_crossed():
     set_collision_layer_bit(1, false)
     set_collision_mask_bit(1, false)
     if currLap >= 3:
-        print("Player _on_finish_line_crossed: RACE OVER")
+        print("BaseRacer _on_finish_line_crossed: RACE OVER")
     else:
         currLap += 1
-        print("Player _on_finish_line_crossed: STILL RACING: " + String(currLap))
+        print("BaseRacer _on_finish_line_crossed: STILL RACING: " + String(currLap))
     set_checkpoints(true)
     pass
 
 
 # Called by the checkpoint when this body crosses it, setting the collision off
 func _on_checkpoint_crossed(cpID):
-    print("Player _on_cp_crossed: " + String(cpID))
+    print("BaseRacer _on_cp_crossed: " + String(cpID))
     set_collision_layer_bit(cpID + cpOffset, false)
     set_collision_mask_bit(cpID + cpOffset, false)
     
@@ -71,7 +71,6 @@ func all_checkpoints_passed():
 
 # Resets checkpoints to being all on or off depending on value of 'setting'
 func set_checkpoints(setting): 
-    print_debug("set_checkpoints: " + String(setting))
     for x in range(cpOffset, numCheckpoints + cpOffset):
         set_collision_layer_bit(x, setting)
         set_collision_mask_bit(x, setting)
@@ -85,6 +84,6 @@ func set_isHealing(value):
 
 
 # Called by boost strips to change the impulse vector
-func boost_impulse(boostNormal : Vector3):
-    impulse = boostNormal * 20
+func boost_impulse(boost : Vector3):
+    impulse = boost
     pass

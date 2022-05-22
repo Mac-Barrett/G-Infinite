@@ -9,7 +9,7 @@ onready var trackPieceSlot = load("res://Scenes/Menus/TrackBuilderTrackSlot.tscn
 # GUI Elements
 onready var track = $TrackPanel/track
 onready var fileBrowser = $FileDialogue
-onready var lineEditTrackSize = $OptionsPanel/VSplit/OptionButtons/TrackSizeLineEdit
+onready var lineEditTrackSize = $Options/VSplit/OptionButtons/TrackSizeLineEdit
 
 
 func _ready():
@@ -51,7 +51,7 @@ func load_track():
 
 # Copies Texture & data from associated node while loading a new track
 func load_texture_by_ID(ID):
-    var path : String = "OptionsPanel/VSplit/TrackPieces/" + String(ID)
+    var path : String = "Options/VSplit/TPScroll/TPGrid/" + String(ID)
     var nodeWithTexture = get_node(path)
     var data = {
         "texture" : nodeWithTexture.texture,
@@ -117,7 +117,9 @@ func _on_FileDialogue_confirmed():
         trackSave.trackName = "TEST"
         trackSave.trackData = trackData.duplicate()
         trackSave.trackSize = trackSize
-        var res = ResourceSaver.save(file_name, trackSave)
+        
+        #var res = ResourceSaver.save(file_name, trackSave)
+        ResourceSaver.save(file_name, trackSave)
     # LOAD FILE
     elif (fileBrowser.mode == FileDialog.MODE_OPEN_FILE):
         print("OPENING FILE...")

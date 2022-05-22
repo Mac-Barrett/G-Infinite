@@ -8,7 +8,6 @@ onready var healthSlider = get_node("HUD/TopRightBox/VBoxTopRight/Health")
 onready var speedLabel = get_node("HUD/SpeedBox/Speed")
 onready var speedSlider = get_node("HUD/SpeedBox/SpeedSlider")
 
-
 # On Ready
 func _ready():
     move_lock_y = true
@@ -21,7 +20,7 @@ func _physics_process(delta):
     set_camera()
     update_HUD()
     if isHealing:
-        health = min(100, health + (5 * (1.0 / 60)))
+        health = min(100, health + (5 * (2.0 / 60)))
     handle_(move_and_collide(velocity * delta))
     pass
 
@@ -131,9 +130,11 @@ func angle_multiplyer(collision):
 # updates debug HUD elements
 func update_Debug():
     DEBUG.get_child(0).text = "Speed: " + String(speed)
-    DEBUG.get_child(1).text = "Direction: " + String(transform.basis.x)
-    DEBUG.get_child(2).text = "Velocity: " + String(velocity)
-    DEBUG.get_child(3).text = "ImpulseV: " + String(impulse)
+    var hypotenusLV = sqrt((velocity.x * velocity.x) + (velocity.z * velocity.z))
+    DEBUG.get_child(1).text = "LinearVelocity: " + String(hypotenusLV)
+    DEBUG.get_child(2).text = "Direction: " + String(transform.basis.x)
+    
+
     pass
 
 
@@ -143,6 +144,8 @@ func update_HUD():
     lapCounterLabel.text = "Lap " + String(currLap) + "/" + String(totalLaps)
     #powerSlider.value = 100
     healthSlider.value = health
-    speedLabel.text = String(speed * 26) + " kmh"
+    
+    var hypotenusLV = sqrt((velocity.x * velocity.x) + (velocity.z * velocity.z))
+    speedLabel.text = String(int(hypotenusLV) * 26) + " kmh"
     speedSlider.value = (speed / MAX_SPEED) * 100
     pass

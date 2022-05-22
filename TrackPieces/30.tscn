@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://TrackPieces/HealthStrip.gd" type="Script" id=1]
-[ext_resource path="res://Textures/StartingLine.jpg" type="Texture" id=2]
+[ext_resource path="res://Scripts/TrackPieceScripts/HealthStrip.gd" type="Script" id=1]
 [ext_resource path="res://Textures/road.jpeg" type="Texture" id=3]
 
 [sub_resource type="SpatialMaterial" id=1]
@@ -13,13 +12,11 @@ metallic_specular = 1.0
 [sub_resource type="BoxShape" id=3]
 
 [sub_resource type="SpatialMaterial" id=4]
-flags_transparent = true
-albedo_texture = ExtResource( 2 )
+albedo_color = Color( 0.14902, 0.741176, 0.243137, 1 )
 metallic_specular = 0.0
 roughness = 0.0
-uv1_scale = Vector3( 1, 2, 1 )
 
-[node name="StartBlock" type="RigidBody"]
+[node name="HealBlock" type="RigidBody"]
 mode = 1
 mass = 0.00102041
 script = ExtResource( 1 )
@@ -50,19 +47,18 @@ shape = SubResource( 2 )
 transform = Transform( 30, 0, 0, 0, 3, 0, 0, 0, 0.5, 0, 0, -20 )
 shape = SubResource( 2 )
 
-[node name="Area" type="Area" parent="."]
+[node name="HealStrip" type="Area" parent="."]
 collision_layer = 2
-collision_mask = 2
 
-[node name="CollisionShape" type="CollisionShape" parent="Area"]
-transform = Transform( 30, 0, 0, 0, 1.5, 0, 0, 0, 10, 0, 0, 0 )
+[node name="CollisionShape" type="CollisionShape" parent="HealStrip"]
+transform = Transform( 30, 0, 0, 0, 3, 0, 0, 0, 10, 0, 0, 0 )
 shape = SubResource( 3 )
 
-[node name="CSGBox" type="CSGBox" parent="Area"]
+[node name="CSGBox" type="CSGBox" parent="HealStrip"]
 width = 60.0
 height = 1.0
 depth = 20.0
 material = SubResource( 4 )
 
-[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
-[connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]
+[connection signal="body_entered" from="HealStrip" to="." method="_on_Area_body_entered"]
+[connection signal="body_exited" from="HealStrip" to="." method="_on_Area_body_exited"]

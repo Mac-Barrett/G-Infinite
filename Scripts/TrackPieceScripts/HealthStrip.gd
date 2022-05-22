@@ -13,3 +13,4 @@ func _on_Area_body_exited(body):
         var castedRacer : Racer = body
         castedRacer.set_isHealing(false)
     pass
+    

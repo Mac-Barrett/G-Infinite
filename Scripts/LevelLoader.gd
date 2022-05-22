@@ -41,29 +41,55 @@ func load_track_pieces(data):
 func load_piece(tpID):
     var trackPiece = null
     match(tpID):
+        # Start Block        
         0:
             trackPiece = load("res://TrackPieces/0.tscn").instance()
             startBlock = trackPiece
+        # Straight Block
         1, 2:
             trackPiece = load("res://TrackPieces/1.tscn").instance()
             if (tpID == 2):
                 trackPiece.rotation.y = deg2rad(90)
-        3, 4: 
+        # Straight Checkpoint
+        3, 4:
             trackPiece = load("res://TrackPieces/3.tscn").instance()
             if (tpID == 4):
                 trackPiece.rotation.y = deg2rad(90)
             trackPiece.set_checkpointID(cpID_index)
             cpID_index += 1
             checkPoints.append(trackPiece)
+        # 90* Turn    
         10, 11, 12, 13:
             trackPiece = load("res://TrackPieces/10.tscn").instance()
             trackPiece.rotation.y = deg2rad(90 * (tpID - 10))
+        # 45* Turn (Diaganol)
         20, 21, 22, 23:
             trackPiece = load("res://TrackPieces/20.tscn").instance()
             trackPiece.rotation.y = deg2rad(90 * (tpID - 20))
+        # Double 45* Turn (Diaganol)
         24, 25:
             trackPiece = load("res://TrackPieces/24.tscn").instance()
             trackPiece.rotation.y = deg2rad(180 * (tpID - 24))
+        # Straight Middle Healstrip
+        30, 31:
+            trackPiece = load("res://TrackPieces/30.tscn").instance()
+            if tpID == 31:
+                trackPiece.rotation.y = deg2rad(90)
+        # Straight Middle Boost
+        40, 41, 42, 43:
+            trackPiece = load("res://TrackPieces/40.tscn").instance()
+            trackPiece.rotation.y = deg2rad(-90 * (tpID - 40))
+            var boostDirection : Vector3
+            match (tpID):
+                40:
+                    boostDirection = Vector3.RIGHT
+                41:
+                    boostDirection = Vector3.BACK
+                42:
+                    boostDirection = Vector3.LEFT
+                43:
+                    boostDirection = Vector3.FORWARD
+            trackPiece.setBoostDirection(boostDirection)
         -1:
             return trackPiece
     return trackPiece
@@ -94,4 +120,3 @@ func load_track_data():
                 [-1, 1, 0, -1], 
                 [-1, 10, 13, -1]] # more complex track
     return data
-
