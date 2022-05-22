@@ -10,8 +10,12 @@ var speed = 0
 var turnSpeed = 0.015
 var acceleration = 0.05
 var deceleration = -0.05
-var impulseDecay = 1
 var brake = 0.3
+
+const baseImpulseDecay = 1
+const boostImpulseDecay = 0.5
+var impulseDecay = 1
+
 
 var MAX_SPEED = 40
 var fps = 60
@@ -86,4 +90,5 @@ func set_isHealing(value):
 # Called by boost strips to change the impulse vector
 func boost_impulse(boost : Vector3):
     impulse = boost
+    impulseDecay = boostImpulseDecay
     pass

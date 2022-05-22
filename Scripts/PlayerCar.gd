@@ -96,6 +96,8 @@ func set_camera():
 # handles collisions from move_and_collide()
 func handle_(collision):
     if (collision != null):
+        impulseDecay = baseImpulseDecay
+        
         var hitMagnitude = (abs(speed) / 6) * 10
         hitMagnitude *= angle_multiplyer(collision)
         

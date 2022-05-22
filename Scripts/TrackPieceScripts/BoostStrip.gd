@@ -9,5 +9,5 @@ func setBoostDirection(dir : Vector3):
 func _on_BoostStrip_body_entered(body):
     if body.is_in_group("Racer"):
         var castedRacer : Racer = body
-        castedRacer.boost_impulse(boostDirection * 50)
+        castedRacer.boost_impulse(boostDirection * 40)
     pass
