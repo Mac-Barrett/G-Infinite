@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource( 1 )
 trackName = "TEST"
-trackData = [ [ -1, -1, 10, 13 ], [ 10, 2, 12, 1 ], [ 0, -1, 10, 12 ], [ 11, 2, 12, -1 ] ]
+trackData = [ [ -1, -1, 20, 23 ], [ 10, 31, 12, 3 ], [ 0, -1, 20, 22 ], [ 11, 43, 12, -1 ] ]
 trackSize = 4

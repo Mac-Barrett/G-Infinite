@@ -9,8 +9,8 @@ onready var trackPieceSlot = load("res://Scenes/Menus/TrackBuilderTrackSlot.tscn
 # GUI Elements
 onready var track = $TrackPanel/track
 onready var fileBrowser = $FileDialogue
-onready var lineEditTrackSize = $Options/VSplit/OptionButtons/TrackSizeLineEdit
-
+onready var lineEditTrackSize = $Options/OuterVSplit/InnerVSplit/Btns/TrackSizeLE
+onready var pathToDraggableTextures = "Options/OuterVSplit/InnerVSplit/TPScroll/TPGrid/"
 
 func _ready():
     for x in range(0, trackSize):
@@ -51,7 +51,7 @@ func load_track():
 
 # Copies Texture & data from associated node while loading a new track
 func load_texture_by_ID(ID):
-    var path : String = "Options/VSplit/TPScroll/TPGrid/" + String(ID)
+    var path : String = pathToDraggableTextures + String(ID)
     var nodeWithTexture = get_node(path)
     var data = {
         "texture" : nodeWithTexture.texture,
@@ -144,4 +144,11 @@ func _on_LineEdit_text_entered(new_text):
         trackSize = int(lineEditTrackSize.text)
     track.columns = trackSize
     clear_track()
+    pass
+
+
+# Quit Button Removes self from Screen
+func _on_Quit_Button_pressed():
+    var parent = get_parent();
+    parent.remove_child(get_node(self.get_path()));
     pass

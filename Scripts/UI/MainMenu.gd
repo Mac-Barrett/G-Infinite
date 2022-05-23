@@ -4,13 +4,14 @@ func _ready():
     pass # Replace with function body.
 
 func _on_Single_Player_pressed():
-    # get_tree().change_scene("res://Scenes/Testing.tscn")
-    get_tree().change_scene("res://Scenes/Levels/Testing.tscn")
+    var CupSelect = load("res://Scenes/Menus/CupSelect.tscn").instance()
+    get_tree().current_scene.add_child(CupSelect)
     pass
 
 
 func _on_Track_Builder_pressed():
-    get_tree().change_scene("res://Scenes/Levels/TrackBuilder.tscn")
+    var TrackBuilder = load("res://Scenes/Levels/TrackBuilder.tscn").instance()
+    get_tree().current_scene.add_child(TrackBuilder)
     pass
 
 func _on_Options_pressed():
