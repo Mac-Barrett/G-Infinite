@@ -69,7 +69,7 @@ func load_piece(tpID):
         # Double 45* Turn (Diaganol)
         24, 25:
             trackPiece = load("res://TrackPieces/24.tscn").instance()
-            trackPiece.rotation.y = deg2rad(180 * (tpID - 24))
+            trackPiece.rotation.y = deg2rad(90 * (tpID - 24))
         # Straight Middle Healstrip
         30, 31:
             trackPiece = load("res://TrackPieces/30.tscn").instance()

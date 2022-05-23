@@ -149,6 +149,5 @@ func _on_LineEdit_text_entered(new_text):
 
 # Quit Button Removes self from Screen
 func _on_Quit_Button_pressed():
-    var parent = get_parent();
-    parent.remove_child(get_node(self.get_path()));
+    get_tree().change_scene("res://Scenes/Menus/MainMenu.tscn")
     pass

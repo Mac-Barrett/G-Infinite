@@ -3,15 +3,17 @@ extends Control
 func _ready():
     pass # Replace with function body.
 
+# Starts the Cup Select Scene
 func _on_Single_Player_pressed():
-    var CupSelect = load("res://Scenes/Menus/CupSelect.tscn").instance()
-    get_tree().current_scene.add_child(CupSelect)
+    get_tree().change_scene("res://Scenes/Menus/CupSelect.tscn")
+    # get_tree().current_scene.add_child(CupSelect)
     pass
 
-
+# Starts the Track Builder Scene
 func _on_Track_Builder_pressed():
-    var TrackBuilder = load("res://Scenes/Levels/TrackBuilder.tscn").instance()
-    get_tree().current_scene.add_child(TrackBuilder)
+    get_tree().change_scene("res://Scenes/Levels/TrackBuilder.tscn")
+    #var TrackBuilder = load("res://Scenes/Levels/TrackBuilder.tscn").instance()
+    #get_tree().current_scene.add_child(TrackBuilder)
     pass
 
 func _on_Options_pressed():
