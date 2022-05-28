@@ -110,8 +110,20 @@ func _on_TestTrack_pressed():
 func _on_FileDialogue_confirmed():
     # SAVE FILE
     if (fileBrowser.mode == FileDialog.MODE_SAVE_FILE):
-        print("SAVING FILE...")
+        print("ATTEMPTING TO SAVE TRACK...")
         var file_name : String = fileBrowser.current_path
+        
+        var startingLineCount: int = 0;
+        var checkpointCount: int = 0;
+        for r in range(0, trackSize):
+            for c in range(0, trackSize):
+                if trackData[r][c] == 3 || trackData[r][c] == 4:
+                    checkpointCount += 1;
+                elif trackData[r][c] == 0:
+                    startingLineCount += 1;
+        if not (checkpointCount > 0 && startingLineCount == 1):
+            # DISPLAY BAD TRACK INFO
+            return
         
         var trackSave = TrackSave.new()
         trackSave.trackName = "TEST"
